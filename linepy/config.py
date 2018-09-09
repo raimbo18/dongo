@@ -3,10 +3,10 @@ from akad.ttypes import ApplicationType
 import re
 
 class Config(object):
-    LINE_HOST_DOMAIN            = 'https://gd2.line.naver.jp'
+    LINE_HOST_DOMAIN            = 'https://legy-jp.line.naver.jp'
     LINE_OBS_DOMAIN             = 'https://obs-sg.line-apps.com'
-    LINE_TIMELINE_API           = 'https://gd2.line.naver.jp/mh/api'
-    LINE_TIMELINE_MH            = 'https://gd2.line.naver.jp/mh'
+    LINE_TIMELINE_API           = 'https://legy-jp.line.naver.jp/mh/api'
+    LINE_TIMELINE_MH            = 'https://legy-jp.line.naver.jp/mh'
 
     LINE_LOGIN_QUERY_PATH       = '/api/v4p/rs'
     LINE_AUTH_QUERY_PATH        = '/api/v4/TalkService.do'
@@ -17,6 +17,7 @@ class Config(object):
     LINE_CERTIFICATE_PATH       = '/Q'
     LINE_CHAN_QUERY_PATH        = '/CH4'
     LINE_SQUARE_QUERY_PATH      = '/SQS1'
+    LINE_SHOP_QUERY_PATH        = '/SHOP4'
 
     CHANNEL_ID = {
         'LINE_TIMELINE': '1341209850',
@@ -27,11 +28,11 @@ class Config(object):
         'LINE_SERVICES': '1459630796'
     }
 
-    APP_TYPE    = ApplicationType._VALUES_TO_NAMES[368]
-    APP_VER     = '2.1.5'
+    APP_TYPE    = ApplicationType._VALUES_TO_NAMES[304] #304 IOSIPAD #365 CHROMEOS #96 DESKTOP
+    APP_VER     = '8.11.0'
     CARRIER     = '51089, 1-0'
     SYSTEM_NAME = 'PUY'
-    SYSTEM_VER  = '12.1.1'
+    SYSTEM_VER  = '11.2.5'
     IP_ADDR     = '8.8.8.8'
     EMAIL_REGEX = re.compile(r"[^@]+@[^@]+\.[^@]+")
 

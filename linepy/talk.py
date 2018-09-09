@@ -147,6 +147,10 @@ class Talk(object):
         return self.talk.sendMessageAwaitCommit(self._messageReq[to], msg)
 
     @loggedIn
+    def getRecentMessagesV2(self, chatId, count=101):
+        return self.talk.destroyMessage(chatId, count)
+
+    @loggedIn
     def unsendMessage(self, messageId):
         self._unsendMessageReq += 1
         return self.talk.unsendMessage(self._unsendMessageReq, messageId)
@@ -202,7 +206,6 @@ class Talk(object):
     def sendImageWithURL(self, to, url):
         path = self.downloadFileURL(url, 'path')
         return self.sendImage(to, path)
-        return self.deleteFile(path)
 
     @loggedIn
     def sendGIF(self, to, path):
@@ -212,7 +215,6 @@ class Talk(object):
     def sendGIFWithURL(self, to, url):
         path = self.downloadFileURL(url, 'path')
         return self.sendGIF(to, path)
-        return self.deleteFile(path)
 
     @loggedIn
     def sendVideo(self, to, path):
@@ -223,7 +225,6 @@ class Talk(object):
     def sendVideoWithURL(self, to, url):
         path = self.downloadFileURL(url, 'path')
         return self.sendVideo(to, path)
-        return self.deleteFile(path)
 
     @loggedIn
     def sendAudio(self, to, path):
@@ -234,7 +235,6 @@ class Talk(object):
     def sendAudioWithURL(self, to, url):
         path = self.downloadFileURL(url, 'path')
         return self.sendAudio(to, path)
-        return self.deleteFile(path)
 
     @loggedIn
     def sendFile(self, to, path, file_name=''):
@@ -248,7 +248,6 @@ class Talk(object):
     def sendFileWithURL(self, to, url, fileName=''):
         path = self.downloadFileURL(url, 'path')
         return self.sendFile(to, path, fileName)
-        return self.deleteFile(path)
 
     """Contact"""
         
