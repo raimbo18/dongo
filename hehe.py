@@ -12,7 +12,9 @@ from googletrans import Translator
 botStart = time.time()
 
 #puy = LINE()
-puy = LINE("EwQwIzlS11Z27NBxeWe3.Ri4/RX6YPvDWVXddSJv8mW.sHMeFhhrCB4eDVPAPF0LwxKxJH6SNTYvtBO2uXW9bnE=")
+puy = LINE("EwuhZA80qfu0xweF11r3.Ri4/RX6YPvDWVXddSJv8mW.HRsSRNLX3CsPphvlDT/Faa55haNUr2qw7CmW8SYAZt8=")
+#EwuhZA80qfu0xweF11r3.Ri4/RX6YPvDWVXddSJv8mW.HRsSRNLX3CsPphvlDT/Faa55haNUr2qw7CmW8SYAZt8= #IOSIPAD
+#EwQwIzlS11Z27NBxeWe3.Ri4/RX6YPvDWVXddSJv8mW.sHMeFhhrCB4eDVPAPF0LwxKxJH6SNTYvtBO2uXW9bnE= #CHROME
 #puy = LINE("Email","Password")
 puy.log("Auth Token : " + str(puy.authToken))
 channelToken = puy.getChannelResult()
@@ -397,7 +399,7 @@ def lineBot(op):
                                     text = "Mentioning To %i Members\n" %len(contact)
                                     no = 1
                                     for mid in contact:
-                                        text += "\n{}. @x           ".format(str(no))
+                                        text += "\n{}. @x".format(str(no))
                                         no = (no+1)
                                     text += "\n\nInGroup : {}".format(str(G.name))
                                     sendMessageWithMention(group, text, contact)
@@ -406,11 +408,11 @@ def lineBot(op):
                                     text = "Mentioning To %i Members\n" %len(contact)
                                     no = 1
                                     for mid in contact:
-                                        text += "\n{}. @x           ".format(str(no))
+                                        text += "\n{}. @x".format(str(no))
                                         no = (no+1)
                                     text += "\n\nInGroup : {}".format(str(G.name))
                                     sendMessageWithMention(group, text, contact)
-                                puy.sendMessage(to, "Send Mention To Group : " + G.name)
+                                puy.sendText(to, "Send Mention To Group : " + G.name)
                             except Exception as error:
                                 puy.sendMessage(to, str(error))
 
@@ -440,6 +442,32 @@ def lineBot(op):
                                 ret_ += "\n{}. {} = {} Members".format(str(no), str(group.name), str(len(group.members)))
                             ret_ += "\n   [ Total {} Groups ]".format(str(len(groups)))
                             puy.sendMessage(to, str(ret_))
+
+                elif msg.text.lower().startswith("unsendall "):
+                    args = text.replace("unsendall ","")
+                    mes = 0
+                    #try:
+                    #    mes = int(args[1])
+                    #except:
+                    #    mes = 1
+                    M = puy.talk.getRecentMessagesV2(to, 999)
+                    MId = []
+                    for ind,i in enumerate(M):
+                        if ind == 0:
+                            pass
+                        else:
+                            if i._from == puy.profile.mid:
+                                MId.append(i.id)
+                                if len(MId) == mes:
+                                    break
+                    def unsMes(id):
+                        puy.unsendMessage(id)
+                    for i in MId:
+                        thread1 = threading.Thread(target=unsMes, args=(i,))
+                        thread1.start()
+                        thread1.join()
+                    puy.sendMessage(to, ' 「 Unsend 」\nSukses mengurungkan {} Pesan.'.format(len(MId)))
+                    print ("Unsend All Chat")
 ###################### RANDOM ##########################
                 elif text.lower() == "mute":
                  if to not in offbot:
