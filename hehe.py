@@ -443,8 +443,8 @@ def lineBot(op):
                             ret_ += "\n   [ Total {} Groups ]".format(str(len(groups)))
                             puy.sendMessage(to, str(ret_))
 
-                elif msg.text.lower().startswith("unsendall "):
-                    args = text.replace("unsendall ","")
+                elif msg.text.lower().startswith("unsendme "):
+                    args = text.replace("unsendme ","")
                     mes = 0
                     #try:
                     #    mes = int(args[1])
